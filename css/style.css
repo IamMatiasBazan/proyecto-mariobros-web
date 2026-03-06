@@ -1,0 +1,817 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;600;700;900&display=swap');
+
+:root {
+    --rojo-mario: #d50000;
+    --rojo-claro: #D31427;
+    --amarillo-mario: #fbd000;
+    --verde-mario: #43b047;
+    --verde-oscuro: #2a7e2b;
+    --azul-claro: #00a2e8;
+    --blanco: #ffffff;
+    --negro: #000000;
+    --fuente-titulos: 'Lilita One', cursive;
+    --fuente-texto: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-texto);
+    background-color: var(--rojo-claro);
+    color: var(--blanco);
+    overflow-x: hidden;
+}
+
+/*==================== MODAL GLOBAL =====================*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: var(--rojo-claro);
+    border: 4px solid var(--amarillo-mario);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 550px;
+    width: 90%;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalScale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--blanco);
+}
+
+@keyframes modalScale {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--amarillo-mario);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+
+.modal-content p {
+    font-family: var(--fuente-texto);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--blanco);
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--amarillo-mario);
+}
+
+.modal .btn-cta {
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* =========================================
+   UTILIDADES
+   ========================================= */
+.texto-amarillo {
+    color: var(--amarillo-mario);
+}
+
+.texto-celeste {
+    color: var(--azul-claro);
+}
+
+.btn-cta {
+    margin-top: 24px;
+    width: 400px;
+    height: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+    color: var(--blanco);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-verde {
+    background-color: var(--verde-mario);
+    border-bottom: 5px solid var(--verde-oscuro);
+}
+
+.btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-cta:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+}
+
+
+/* =========================================
+   HEADER / NAVBAR
+   ========================================= */
+.menu-burger {
+    display: none;
+}
+
+header {
+    padding: 15px 50px;
+    position: relative;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--rojo-claro);
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+    color: var(--rojo-mario);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   SECCIÓN: PORTADA (HERO)
+   ========================================= */
+.portada {
+    position: relative;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--rojo-claro);
+}
+
+/* Fondos decorativos */
+.fondo-decorativo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.nube {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.rayos {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: conic-gradient(from 180deg at 100% 0%,
+            #FFDE45 0deg 15deg, #FCCF00 15deg 30deg,
+            #FFDE45 30deg 45deg, #FCCF00 45deg 60deg,
+            #FFDE45 60deg 75deg, #FCCF00 75deg 90deg,
+            #FFDE45 90deg 105deg, #FCCF00 105deg 120deg);
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Contenido */
+.portada-contenido {
+    position: relative;
+    z-index: 10;
+    width: 50%;
+    padding-left: 10%;
+}
+
+.portada-contenido h1 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.portada-contenido p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.portada-imagen {
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+    width: 45%;
+    z-index: 10;
+}
+
+.portada-imagen img {
+    display: block;
+}
+
+/* Suelo de ladrillos */
+.ladrillos-suelo {
+    position: absolute;
+    bottom: -90px;
+    left: 0;
+    width: 100%;
+    height: 142px;
+    background-image: url('../img/portada/ladrillos.svg');
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    background-size: auto 100%;
+    z-index: 5;
+}
+
+/* =========================================
+   SECCIÓN: TRANSFORMA TU VIDA
+   ========================================= */
+.transforma-vida {
+    margin-top: 100px;
+    padding: 80px 0;
+    position: relative;
+    background-color: var(--rojo-claro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.transforma-contenido {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+}
+
+.transforma-vida h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.pasos-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 50px;
+    background-image: url('../img/transforma-tu-vida-banner/linea-tiempo.svg');
+    background-size: 1920px 112px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    height: 160px;
+    /* Reducido para que termine justo después de los textos */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 0;
+    /* Eliminado para que el margin-top del botón sea el único espacio */
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.paso-info {
+    position: absolute;
+    top: 120px;
+    text-align: center;
+    width: 250px;
+    transform: translateX(-50%);
+}
+
+.paso-info p {
+    font-family: var(--fuente-titulos);
+    font-size: 0.9rem;
+    font-weight: 400;
+    /* Lilita One no necesita 900 */
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--blanco);
+}
+
+/* Alineación con los cx del SVG: 478.5, 961.5, 1409.5 en un canvas de 1920px */
+.info-1 {
+    left: calc(50% - (960px - 478.5px));
+}
+
+.info-2 {
+    left: 50%;
+}
+
+.info-3 {
+    left: calc(50% + (1409.5px - 960px));
+}
+
+.transforma-contenido .btn-cta {
+    margin-top: 24px;
+    margin-left: calc(50% - (960px - 478.5px) - 200px);
+    position: relative;
+    z-index: 10;
+}
+
+.transforma-imagen {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25%;
+    max-width: 450px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.transforma-imagen img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.4));
+    animation: flotar 4s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* =========================================
+   SECCIÓN: FILOSOFÍA (SOBRE MÍ)
+   ========================================= */
+.filosofia {
+    padding: 80px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--rojo-claro);
+}
+
+.filosofia-imagen {
+    width: 40%;
+}
+
+.filosofia-imagen img {
+    width: 100%;
+    max-width: 500px;
+}
+
+.filosofia-contenido {
+    width: 55%;
+}
+
+.filosofia-contenido h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+.filosofia-contenido p {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.filosofia-contenido .destacado {
+    font-size: 1.2rem;
+    margin: 30px 0;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    margin-top: 120px;
+    background-color: var(--blanco);
+    color: var(--negro);
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer-divisor {
+    position: absolute;
+    top: -150px;
+    /* Ajustado para que la curva blanca suba sobre el fondo rojo */
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    z-index: 1;
+}
+
+.footer-divisor img {
+    width: 100%;
+    display: block;
+}
+
+.footer-contenido {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    padding: 20px 5%;
+}
+
+.logo-footer img {
+    height: 60px;
+    margin-bottom: 0;
+}
+
+.copyright {
+    font-family: var(--fuente-titulos);
+    font-size: 0.9rem;
+    color: var(--negro);
+    text-transform: uppercase;
+}
+
+.copyright a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.copyright a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVO (MÓVIL)
+   ========================================= */
+@media (max-width: 900px) {
+
+    /* Global Buttons in Mobile */
+    .btn-cta {
+        width: 100%;
+        max-width: 350px;
+        height: 60px;
+        font-size: 1rem;
+        margin: 20px 0;
+    }
+
+    /* HEADER */
+    header {
+        padding: 10px 20px;
+    }
+
+    .nube {
+        content: url('../img/portada/nube-movil.svg');
+        height: 183px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: var(--blanco);
+        gap: 40px;
+        transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1000;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li a {
+        color: var(--rojo-mario);
+        font-size: 1.5rem;
+    }
+
+    .menu-burger {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 1001;
+    }
+
+    .menu-burger img {
+        width: 35px;
+    }
+
+    /* PORTADA (HERO) */
+    .portada {
+        position: relative;
+        overflow: hidden;
+        flex-direction: column;
+        padding: 0;
+        height: auto;
+        min-height: auto;
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+    }
+
+    .portada-contenido {
+        margin-top: 150px;
+        /* Reducido drásticamente de 100px */
+        order: 3;
+        /* Texto abajo del todo */
+        width: 100%;
+        padding: 10px 20px 80px;
+        /* Reducido padding superior */
+        text-align: left;
+        z-index: 10;
+        position: relative;
+    }
+
+    .portada-contenido h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .portada-contenido p {
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    .portada-imagen {
+        order: 1;
+        /* Personajes arriba */
+        position: relative;
+        width: 100%;
+        height: 440px;
+        margin: 0;
+        right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 6;
+    }
+
+    .portada-imagen img {
+        content: url('../img/portada/mario-bros-fondo-movil.webp');
+        position: absolute;
+        top: 200px;
+        max-width: none;
+        height: auto;
+        z-index: 10;
+        left: 40%;
+        transform: translateX(-50%);
+    }
+
+    .ladrillos-suelo {
+        order: 2;
+        position: relative;
+        height: 141px;
+        background-image: url('../img/portada/ladrillo-movil.svg');
+        background-size: 480px 141px;
+        z-index: 5;
+        width: 100%;
+        margin-top: -90px;
+    }
+
+    .rayos {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 450px;
+        background: conic-gradient(from -55deg at 30% 100%,
+                #FFDE45 0deg 20deg, #FCCF00 20deg 40deg,
+                #FFDE45 40deg 60deg, #FCCF00 60deg 80deg,
+                #FFDE45 80deg 100deg, #FCCF00 100deg 120deg,
+                #FFDE45 120deg 140deg, #FCCF00 140deg 160deg,
+                #FFDE45 160deg 180deg, #FCCF00 180deg 200deg,
+                #FFDE45 200deg 220deg, #FCCF00 220deg 240deg,
+                transparent 240deg);
+        z-index: 2;
+        opacity: 1;
+        pointer-events: none;
+        clip-path: polygon(30% 100%, -20% 0%, 150% 0%, 100% 100%);
+    }
+
+    /* TRANSFORMA TU VIDA */
+    .transforma-vida {
+        margin-top: -60px;
+        padding: 60px 20px;
+        flex-direction: column;
+    }
+
+    .transforma-contenido {
+        width: 100%;
+        padding: 0;
+    }
+
+    .transforma-contenido h2 {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .pasos-container {
+        width: 100%;
+        height: 482px;
+        /* Tamaño exacto de linea-tiempo-movil.svg */
+        background-image: url('../img/transforma-tu-vida-banner/linea-tiempo-movil.svg') !important;
+        background-repeat: no-repeat;
+        background-position: left 20px top;
+        background-size: 83px 482px;
+        /* Tamaño exacto del SVG */
+        margin-left: 0;
+        padding-left: 120px;
+        /* Ajustado para dar espacio al nuevo ancho de 83px */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .paso-info {
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        text-align: left;
+        width: 100%;
+        height: 100px;
+        /* Altura para centrar texto con los círculos */
+        display: flex;
+        align-items: center;
+    }
+
+    .paso-info p {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .transforma-imagen {
+        position: absolute;
+        top: 150px;
+        right: 10px;
+        width: 150px;
+        z-index: 20;
+    }
+
+    .transforma-contenido .btn-cta {
+        margin-left: 0;
+        margin-top: 40px;
+    }
+
+    /* FILOSOFÍA */
+    .filosofia {
+        margin-top: -90px;
+        flex-direction: column;
+        padding: 60px 20px 0;
+        text-align: left;
+    }
+
+    .filosofia-contenido {
+        width: 100%;
+    }
+
+    .filosofia-contenido h2 {
+        font-size: 1.8rem;
+    }
+
+    .filosofia-contenido p {
+        font-size: 0.9rem;
+    }
+
+    .filosofia-imagen {
+        position: relative;
+        width: 100%;
+        margin: 40px 0 0;
+        right: auto;
+    }
+
+    .filosofia-imagen img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* FOOTER */
+    footer {
+        margin-top: 150px;
+    }
+
+    .footer-divisor {
+        top: -90px;
+        height: 183px;
+    }
+
+    .footer-divisor img {
+        content: url('../img/footer/fondo-footer-movil.svg');
+        height: 183px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .footer-contenido {
+        flex-direction: column;
+        align-items: flex-start;
+        /* Alineado a la izquierda */
+        gap: 20px;
+        padding: 40px 20px;
+    }
+
+    .logo-footer img {
+        height: 50px;
+    }
+
+    .copyright {
+        font-size: 0.8rem;
+        text-align: left;
+    }
+}
